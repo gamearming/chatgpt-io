@@ -8,11 +8,11 @@
 [![GitHub forks](https://img.shields.io/github/forks/PawanOsman/chatgpt-io?label=Forks&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAsQAAALEBxi1JjQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAQ7SURBVEiJtZVZaFxVGMf/d19mbnMzk5lskzShmSS0Seto0xgliEFwaWmTPlhFiFIKpSLik1CLKGgVfPKhIj4oVSiVUI1GQytYrKYWbYpQa0vTdJLQmjQzk7mzpJnc9VwfpgmTmEmi0P/LvZxv+Z3vfGcB7rOogv8NNMe9yHN8BAC9MEiI6xBiT9im+Q2AK/8XUMkL4oWqusYayeNlljuZhu4mY5Mzc7OZG5ah9wBI/CcAL0j99c2te/4eu56wDCMBCqTAhwUotTRQKav+gDJ+/c9x09DbAKTWXYYgSjfCLdtdnuc/KDYRhuH2ezeo8fDWHTYniEPrzZ1fa4qiCXFACClWuus41mfG/Nxb2WQsq5aVtzAMswcAFEXpDoVCd4LB4G0A4ZUBBeIFYZAXpVGGYXYtt1mW9XFqJj5eVl6tMix3FABkWe46fOTNiu6evT5VVfsA1K8GEDleioRbHmrgOL53OYATxQO2bValZqYzguTxAahYsFEUjfaHOx7w+/0HVgMsblvXXbKFwXHcIUUp+VCSPUImmZhT/UEfgEcLfSRJAsUwwmqAYqqgaPZ9uISpra0RLVP38qIksCzbsFYguzBzx7EXB3lBggu3A6BfBogNAI5tXkxr6QHFI7+hlqhBhmVBMVz5egAK7Zrl5O4EKnzMwfRczpfLTKNpW3v1bFr7yHXzR2L69njc0HO74/H4MEAN+QAGS2+ClQF1VeInn77dJHe1qwBQldMJDr4bdc5d1gyXlq17fq7rEhsAmZ+f/10QpSiA5rWSL1QQ6WpXKQT2AXwl5NhxfPEOzTz5yk1Zpyvh8/lBCMEvqQRtGvoTAEzHdpRMMgHiWBt1XV8TkJcVz3+JCYoCvnyvDk3dwy7nKTcF0UPUQAXnLQ2cKoidrwjVP5XV4rn1AdI/LTH4Slhc+LyVev5wVNCyWQAAt0IChrL5NQHXojkc64shpxP07vSja4cKAAjXSrh0ouVfQad/TeHkaQ2yRCGmeVZtNGvbLv/0q1FI/jBohsHPR8dxqGcOr79UvWLAkWO3cPJHE2LpRjiOjfTUCLZ35S/WQDAIjmFeqK4OdQOAZZl3KFX13Krf0lHTs/sZKF4v+r7+DlMjQxjpb4XALz2H2bsOWvddRe3mx/Bszy4kkhoGBs9AT0+js7Nzrv+rU1lRlBZ7YlnmNGuYFFWiqni88xEAwKU/LmNiRMo27LyYYFnKLAQYFhFpOVjW2FCvRLbll+7sufMYuzqZ+X7g2yvJZHIvlj1GrOOQVErTQoM/nIWieDEaHYeWzMwa80YzABtLJYlyauzayE3l/G/DSCQ1zM5mYZjm6Gw201mkDVy7JHunNm150A23trnektI4x4n7izWNE4TXNqhlicatbe6mzREiSvIkgNZi/gs7IMSyfC9N04pp6icA/FUs4J4ivCA8RxxHs237OIDYGv73T/8AEAmYFH31lroAAAAASUVORK5CYII=)](https://github.com/PawanOsman/ChatGPT.Net/network)
 [![GitHub stars](https://img.shields.io/github/stars/PawanOsman/chatgpt-io?label=Starts&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAApgAAAKYB3X3/OAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAPYSURBVEiJrZZdaFtlGMf/7/lKs6StadIm/UhOk9jFFvuxrdt0tEJjM0Sdil6oFwqKeCG72Xbj5lgR2cVAmSCCMEGcMtCbga7Fbc0KOkGkDETXbf1YsmZt0jZJm+yctuck57xedKZp2qQB91yd9/n68Rz+z3sOoZSiHHM6Dxh5Q8VbWY1k6qyp70dHRzPl1HFldQfQUCcMH/DK+ySV0FtR0yEAr5ZTx5STJHoDPW5rZu/Z12LcuTejfJVBe6HR4/c9MkCTNfPVEX+C/+98xJ8UWuzZrx8JwOXt666spA37u7WcL9Aqo4Kj+5ubA63/G2Ctxqcn3pMtcBmBhoqc/5g/wYv1yrZTlAT4fP2v2Kpp1zN71DWH3QDYBABAoE2GWdD37e7se6NUD0IphdP5XA1ls50g1NfcyPQSoGMpnbV1+TT+y+Mpa5U5T8o6Be5IwKoOSWFwarBO+228QnnnWWnkg5ceXDj5bc30d8PmpK7TVCQSnCEub9/7Dit3tnevSXhc3MF5RSPcjVmIlhvgi4l4WVuDbGGRJI/4Kqd/dLFWCS3wn5P2jn7p2oVWk82S101LAis3Sk0OjEuArBUNyyqDp840rzA8h9nbU6sF4TK22yqUDAdv74BBoGPM3BJ98djpkPTnX/J6lJQuBgBY+KKhy2MmfDJkS84tsC8z96eGx6NRvevwQCh9fVQqH8AQgN8swl9umnDy57r4wiJ9MhIJzjAAMD0dnLof1zqOng4vjvyRXgOQMq4pgWw4Dv1jxqlLtfPxRdIeDv8aBfL2YPZu8F50Vmv/8My95GRYAVhrGYD1CcIJHh8P1can0xXtodBILDdofn4kEpyZmdPevngloYNvAARPaUB2XQyDN800IZHDscnL8/kpW2wysxxbUCh41/YAVc89pldYoqrs5m6FDl5Au89jZsE7AS1RNqDNocDtyAS2BYj1TH+L2wiY/QDvAUgROT7IbliXVocCnqU92wK0LHa1iAaAqwH0FGBoy8UUlUBaeaicuLqhzlObQUpmmgr7bdJiWqa2xvpKQJl4mFGLyVknBr5IL43d5VIsSxWLmToGDqpVPd71zzLHUFQbNd7t7nssFBpZ2hLQ0vK8wVxJGAIFWPoBs/MZfHZuRv99VI3H4vy74alrgwAgiv49J36yn7dXZncePxjndrvWrhqzkVKVEDuAHIAU/lV07uofO+Sv3qlpFFevS7K0rB+9c6v3G0oHdBRYU3P/0x575ryrJiM2WLK48rcpnpLgCYVGVosCRLHXojHC6yCQjazhx4mJIaWwcaG5vH3dlLJPcFS7lP96AOBfSCCA1HW3a3EAAAAASUVORK5CYII=)](https://github.com/PawanOsman/ChatGPT.Net/stargazers)
 [![GitHub license](https://img.shields.io/github/license/PawanOsman/chatgpt-io?label=License&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAsQAAALEBxi1JjQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAQrSURBVEiJpZVvbFNVGMZ/t/e2ZW2XDUZvhwLt1rUyYOA2FJNFiRsYjREGBlCmJgiOPzKDET4gBqaSoEGREOOiY5kRI2QxETUyAigxCskQmQaSwcKEjsJYN7uO/W3Xe48fll3ZGCvom5zkzXnu+/zuveec90gMD8scn78uApPtDrvGGCFJkmQdl2QzyYoZIbSBaPTImd/qnh2rxpLv9V0q8k8T39UeFd0DIuHojAkR7B0cS54riQL3jTRVhszzMrPOr3/4EW8w0mGIf9TXU1VZiaaN/jGqy0XZm9uRZRnVlW4CUoDrIwGWfG9WQ9ncgsxC/wNU150yxE8rKigsXsX4NOeogK8qP6Cp8QL+7Bl3/C1Knt//g97Xn3k62MzpYDNnWq7xfPZ0AJxOJ8e+/ZLX33qfg59/Qke4fVhx08VzpKSOv6M5gNKnmD01P9YaE86JThzJyQC8vWMHV5ubmTI5iXWrS+jr7xtW7EjejDklbWyAySSLjIzMUUVJkpjqdgOQPmnSbbomoCs+mPunz9CBjpHPmMbE30NkT88RgDRyfmgX0REOU11VmdCoaMETzH4wF4DAlctU7/uYQNNFVDlgnffQ/Zd6+uPHtLh+ob6hbSugGQBHcjKPF81PCHC7PUa+ecOLbFnlxbPIizs9B60rbDvf2L7o0InAwp7egVBjILLbAJjNZnLz8hMChqJi7y5m+2zMmuZi0ztHuNYSQdN0li9ws+mlHOnwyeC21FTbCQMQam3ljY1lCY1Xl65Fdbn4/ZcaDux5iqVrDrKy0EW+z4MuBNv2nUVNs/H9nvkpT756tNYAqC4X+w/U3NXbd0YiIFno6okhBgbI9w2eBZMksXmZm61fNFCQOwmrRQ4ZgPa2NvZ+9GFC82eKF+PxZCDLErJJIq7pw3RNEyiyCUWR0AUWAzAhLY2Vr5QmBKiqixst1+nu7sVqUUidkMzxsyHm56nEBnTK9//F2pI5hDujaJpmNwAmk4nxCY49gNVqxZvlo3jFRsreraZi50LKd//EwT3n0HWddUtnkZs9kcLS2vb6hrZ50oyZsxrr6v/0hVpb2VG+LSFg+YoSCh59bDBfVEjpYhWX087cmSp94RAn61uo/fWa+OZEYO3lYOdnBiCh8yhxozXE8oVF5KT3cjMG4Ug/CiJ2+sLf793sjpUDQklkMlY4VRWPewpblgi6++KkOsxUHb4SPX6m5WdAwC2tItLRQXVVJUIIw8But7Nm/Ya7gplMEop8e2szADa7nbz8Oej6v9vO7nAkNJYVCztrLnEjmqY3njsVmOqyOYH4kP6/1kATcL6xievBqwgtHl329IIMoAA4NARRYrGoFo/HUZT/thzuTC/uTC+vvfyCxGC7/vpWXenq6d4+Nzdn17ikJOu9GEuSJFmsNrusyIoQQotFo7WMuPAB/gHPaKaziaM8GAAAAABJRU5ErkJggg==)](https://github.com/PawanOsman/ChatGPT.Net)
-[![Discord server](https://img.shields.io/discord/1055397662976905229?color=5865F2&label=Discord&logo=discord&logoColor=white)](https://discord.pawan.krd)
+[![Discord 伺服器](https://img.shields.io/discord/1055397662976905229?color=5865F2&label=Discord&logo=discord&logoColor=white)](https://discord.pawan.krd)
 
-## [Check the new Google Bard Chatbot!](https://github.com/PawanOsman/GoogleBard)
+## [檢查新的 Google Bard 聊天機器人！](https://github.com/PawanOsman/GoogleBard)
 
-A simple Node.js module for interacting with the ChatGPT without using any **~~Browser~~**.
+這是個簡單的 Node.js 模組，可與 ChatGPT 進行互動，而不需要使用任何**~~瀏覽器~~**。
 
 ```javascript
 import chatGPT from "chatgpt-io";
@@ -20,43 +20,44 @@ import chatGPT from "chatgpt-io";
 let bot = new chatGPT("<SESSION_TOKEN>");
 let response = await bot.ask("Hello?");
 console.log(response);
-
 ```
 
-## How the new method working without a browser?
+## 這個新方法如何在沒有瀏覽器的情況下運作？
 
-The new method operates without a browser by utilizing a server that has implemented bypass methods to function as a proxy. The library sends requests to the server, which then redirects the request to ChatGPT while bypassing Cloudflare and other bot detection measures. The server then returns the ChatGPT response, ensuring that the method remains effective even if ChatGPT implements changes to prevent bot usage. Our servers are continuously updated to maintain their bypass capabilities.
+這種新方法是透過使用已實施繞道方法的伺服器來運作，而非透過瀏覽器。<br>
+該程式庫會向伺服器發送請求，然後重新導向到 ChatGPT，同時繞過 Cloudflare 和其他機器人偵測措施。<br>
+伺服器隨即傳回 ChatGPT 的回應，確保即使 ChatGPT 實施防止機器人使用的變更，該方法仍然有效，我們的伺服器會持續更新以維持其繞道能力。
 
-## Installation
+## 安裝
 
-To install the package, run the following command:
+要安裝此套件，請執行以下命令：
 
 ```bash
 npm install chatgpt-io
 ```
 
-## Usage
+## 用法
 
-To use the package, require it in your code and create a new instance of the `chatGPT` class, passing in your ChatGPT API session token as an argument.
+要使用這個套件，請在程式碼中引入它並建立 `chatGPT` 類別的新實例，將你的 ChatGPT API [對話金鑰 `accessToken`](https://chat.openai.com/api/auth/session) 作為參數傳遞。
 
 ```javascript
 import chatGPT from "chatgpt-io";
 
 let bot = new chatGPT("<SESSION_TOKEN>");
 
-// or if your accounts is pro
+// 如果您的帳戶是專業版的
 let bot = new chatGPT("<SESSION_TOKEN>", {
     proAccount: true
 });
 ```
 
-Before making any requests to the API, you should wait for the `bot` instance to be ready by calling the `waitForReady` method. This ensures that the connection to the API has been established and any necessary setup has been completed.
+在向 API 發送任何請求之前，應該調用 `waitForReady` 成員等待 `bot` 實例準備好，確保已建立跟 API 的連接及完成必要的設定。
 
 ```javascript
 await bot.waitForReady();
 ```
 
-Once the `bot` instance is ready, you can send a message to the API using the `ask` method. This method takes a message string as its first argument and an optional conversation ID as its second argument. If a conversation ID is not provided, the default conversation will be used.
+一旦 `bot` 實例準備就緒，可以使用 `ask` 成員函式向 API 發送消息，此成員會將文字訊息作為第一個參數，對話 ID 作為第二個參數(可選)。如果未提供對話 ID，將使用預設對話。
 
 ```javascript
 let response = await bot.ask("Hello?");
@@ -66,11 +67,11 @@ let response2 = await bot.ask("Hello?", "any-unique-string");
 console.log(response2);
 ```
 
-The `ask` method returns a promise that resolves with the API's response to the message.
+`ask` 成員傳回一個解析為 API 對消息的回應的 Promise。
 
-## ES6 Update
+## ES6 更新
 
-This library is now using ES6 syntax and is intended to be used with the "module" type in your package.json file. This means that you will need to update your package.json file to include the following:
+此套件目前使用 ES6 語法，旨在與 package.json 文件中的 "module" 類型相容，所以在 package.json 文件，必須包括以下內容：
 
 ```json
 {
@@ -78,30 +79,31 @@ This library is now using ES6 syntax and is intended to be used with the "module
 }
 ```
 
-In addition, you will need to change any instances of "require" to "import" in your code. For example, instead of:
+此外還必須將程式碼中所有的 "require" 語句更改為 "import" 語句。
+例如以下範例：
 
 ```javascript
 const chatGPT = require("chatgpt-io");
 ```
 
-You will now use:
+您現在將使用：
 
 ```javascript
 import chatGPT from "chatgpt-io";
 ```
 
-## API Reference
+## API 參考
 
-### `ChatGPT` class
+### `ChatGPT` 類
 
 #### `constructor(sessionToken: string, options: object)`
 
-Creates a new instance of the `ChatGPT` class.
+建立 `ChatGPT` 類的新實例。
 
-##### Parameters
+##### 參數
 
-- `sessionToken` (string): Your ChatGPT API session token.
-- `options` (object):
+- `sessionToken`（string）：您的 ChatGPT API [對話金鑰 `accessToken`](https://chat.openai.com/api/auth/session)。
+- `options`（object）：
 
 ```javascript
 options = {
@@ -113,6 +115,7 @@ options = {
   proAccount: boolean; // default = false
 }
 ```
+
 ```javascript
 LogLevel = {
   Trace = 0,
@@ -123,23 +126,22 @@ LogLevel = {
 }
 ```
 
-
 #### `waitForReady(): Promise<void>`
 
-Waits for the `chatGPT` instance to be ready to make requests to the API. Returns a promise that resolves when the instance is ready.
+請等待 `chatGPT` 實例準備好後再向 API 發送請求，此成員將傳回 promise，在實例就緒時解析。
 
 #### `ask(message: string, conversationId?: string): Promise<string>`
 
-Sends a message to the API and returns a promise that resolves with the API's response.
+向 API 發送訊息並傳回 promise，在 API 回應後解析該回應。
 
-##### Parameters
+##### 參數
 
-- `message` (string): The message to send to the API.
-- `conversationId` (string, optional): The ID of the conversation to send the message to. If not provided, the default conversation will be used.
+- `message`（字串）：要發送到 API 的訊息。
+- `conversationId`（字串，可選）：要發送訊息的對話的 ID。如果未提供，則使用預設對話。
 
-## Example
+## 範例
 
-Here is an example of how to use the `chatgpt-io` module to send a message to the API and log the response:
+以下是使用 `chatgpt-io` 模組向 API 發送訊息並記錄回應的範例：
 
 ```javascript
 import chatGPT from "chatgpt-io";
@@ -158,7 +160,7 @@ import chatGPT from "chatgpt-io";
 })();
 ```
 
-## Event example(Alpha)
+## 事件範例（Alpha）
 
 ```javascript
 import chatGPT from "chatgpt-io";
@@ -175,19 +177,19 @@ import chatGPT from "chatgpt-io";
 })();
 ```
 
-## Server Example
+## 伺服器範例
 
-In `examples/server.js` you can find an example of how to use the `chatgpt-io` module to create a simple Fastify server that can be used to send messages to ChatGPT.
+在 `examples/server.js` 中，可以找到如何使用 `chatgpt-io` 模組建立簡單的 Fastify 伺服器來傳送訊息到 ChatGPT 的範例。
 
-Run the server by setting the `CHATGPT_SESSION_TOKEN` environment variable to your ChatGPT API session token and running the following command:
+若要啟動此伺服器，請將 `CHATGPT_SESSION_TOKEN` 環境變數設定為 ChatGPT API 的[對話金鑰 `accessToken`](https://chat.openai.com/api/auth/session)，並執行以下指令：
 
 ```bash
 node examples/server.js
 ```
 
-You can also set the port with the `CHATGPT_PORT` environment variable. The default port is `3000`.
+透過設定環境變數 `CHATGPT_PORT` 來指定通訊埠。預設的通訊埠為 `3000`。
 
-To send a message to the server, make a `POST` request to `http://localhost:<port>/ask` with the following JSON body:
+若要將訊息傳送至伺服器，請透過 `POST` 請求向 `http://localhost:<port>/ask` 傳送以下 JSON 文字：
 
 ```json
 {
@@ -196,4 +198,4 @@ To send a message to the server, make a `POST` request to `http://localhost:<por
 }
 ```
 
-A standalone version of this API server can be found at [chatgpt-io-api](https://github.com/waylaidwanderer/chatgpt-io-api).
+此 API 伺服器的獨立版本可在 [chatgpt-io-api](https://github.com/waylaidwanderer/chatgpt-io-api) 上找到。
