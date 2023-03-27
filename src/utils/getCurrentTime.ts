@@ -1,3 +1,7 @@
+/**
+ * 獲取目前時間的字串表示形式。
+ * @returns {string} 目前時間的字串格式(yyyy-mm-dd hh:mm:ss)。
+ */
 function getCurrentTime() {
     const date = new Date();
     const year = date.getFullYear();
