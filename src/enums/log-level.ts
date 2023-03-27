@@ -1,6 +1,3 @@
-抱歉，謝謝您的指正。在台灣學術界詞彙中，「Debug」可以翻譯為「偵錯級別」。以下是已修正的程式碼註釋:
-
-```
 /**
  * 定義日誌級別的列舉型別。
  * @enum {number}
@@ -29,4 +26,4 @@ enum LogLevel {
 }
 
 export default LogLevel;
-```
+
