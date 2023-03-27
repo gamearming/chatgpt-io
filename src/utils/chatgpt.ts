@@ -7,223 +7,213 @@ import isObject from "./is-object.js";
 import processError from "../utils/process-error.js";
 import SessionResponse from "../models/session-response.js";
 
-async function* chunksToLines(chunksAsync: any) {
-	let previous = "";
-	for await (const chunk of chunksAsync) {
-		const bufferChunk = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
-		previous += bufferChunk;
-		let eolIndex: number;
-		while ((eolIndex = previous.indexOf("\n")) >= 0) {
-			// line includes the EOL
-			const line = previous.slice(0, eolIndex + 1).trimEnd();
-			if (line === "data: [DONE]") break;
-			if (line.startsWith("data: ")) yield line;
-			previous = previous.slice(eolIndex + 1);
-		}
-	}
+/**
+ * 將緩衝區分割為字串行。
+ * @param chunks 緩衝區。
+ * @returns 一個陣列，每個元素都是已處理過的字串行。
+ */
+async function chunksToLines(chunks) {
+  let previous = "";
+  const lines = [];
+  for (let i = 0; i < chunks.length; i++) {
+    const chunk = chunks[i];
+    const bufferChunk = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
+    previous += bufferChunk;
+    let eolIndex;
+    while ((eolIndex = previous.indexOf("\n")) >= 0) {
+      // 行包含 EOL
+      const line = previous.slice(0, eolIndex + 1).trimEnd();
+      if (line === "data: [DONE]") break;
+      if (line.startsWith("data: ")) lines.push(line);
+      previous = previous.slice(eolIndex + 1);
+    }
+  }
+  return lines;
 }
 
-async function* linesToMessages(linesAsync: AsyncGenerator<string, void, unknown>) {
-	for await (const line of linesAsync) {
-		const message = line.substring("data :".length);
-		yield message;
-	}
+/**
+ * 將字串行轉換為訊息。
+ * @param lines 字串行的陣列。
+ * @returns 一個陣列，每個元素都是已處理過的訊息。
+ */
+async function linesToMessages(lines) {
+  const messages = [];
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const message = line.substring("data :".length);
+    messages.push(message);
+  }
+  return messages;
 }
 
-async function* streamCompletion(data: any) {
-	yield* linesToMessages(chunksToLines(data));
+/**
+ * 在串流結束時傳回所有已取得的字串行。
+ * @param data 原始接收到的資料串流。
+ * @returns 一個陣列，每個元素都是已獲取的訊息。
+ */
+async function streamCompletion(data) {
+  const chunks = [];
+  for await (const chunk of data) {
+    chunks.push(chunk);
+  }
+  const lines = await chunksToLines(chunks);
+  const messages = await linesToMessages(lines);
+  return messages;
 }
 
-async function sendMessage(callback: (arg0: string) => void, bypassNode: string, accessToken: string, model: string, prompt: string, parentMessageId: string, conversationId?: string): Promise<Result<AskResponse>> {
-	let data = {
-		action: "next",
-		messages: [
-			{
-				id: randomUUID(),
-				role: "user",
-				content: {
-					content_type: "text",
-					parts: [prompt],
-				},
-			},
-		],
-		conversation_id: conversationId,
-		parent_message_id: parentMessageId,
-		model: model,
-	};
+/**
+ * 向對話機器人發送訊息。
+ * @param callback 在訊息發送後調用的回調函數，以處理對話機器人傳回的訊息。
+ * @param bypassNode 對話機器人的 URL 位址。
+ * @param accessToken 存取對話機器人所需的存取金鑰。
+ * @param model 使用的模型。
+ * @param prompt 要送到對話機器人的提示。
+ * @param parentMessageId 父訊息的 ID。
+ * @param conversationId 對話 ID（可選）。
+ * @returns 包含從對話機器人接收到的回答的 `Result` 物件。
+ */
+async function sendMessage(callback, bypassNode, accessToken, model, prompt, parentMessageId, conversationId) {
+  let data = {
+    action: "next",
+    messages: [
+      {
+        id: randomUUID(),
+        role: "user",
+        content: {
+          content_type: "text",
+          parts: [prompt],
+        },
+      },
+    ],
+    conversation_id: conversationId,
+    parent_message_id: parentMessageId,
+    model: model,
+  };
 
-	if (!conversationId) delete data.conversation_id;
+  if (!conversationId) delete data.conversation_id;
 
-	let result: Result<AskResponse> = {
-		data: {
-			answer: "",
-			conversationId: "",
-			messageId: "",
-		},
-		error: "",
-		errorType: ErrorType.UnknownError,
-		status: true,
-	};
+  let result = {
+    data: {
+      answer: "",
+      conversationId: "",
+      messageId: "",
+    },
+    error: "",
+    errorType: ErrorType.UnknownError,
+    status: true,
+  };
 
-	try {
-		let response = await axios.post(`${bypassNode}/backend-api/conversation`, data, {
-			responseType: "stream",
-			headers: {
-				"content-type": "application/json",
-				authorization: `Bearer ${accessToken}`,
-			},
-		});
+  try {
+    let response = await axios.post(`${bypassNode}/backend-api/conversation`, data, {
+      responseType: "stream",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${accessToken}`,
+      },
+    });
 
-		let dataToReturn: any;
+    let dataToReturn;
 
-		if (response.headers["content-type"] === "application/json") {
-			let dataCollected = await new Promise<string>((resolve) => {
-				let dataChunks = "";
-				response.data.on("data", (chunk: any) => {
-					dataChunks += chunk;
-				});
-				response.data.on("end", () => {
-					dataToReturn = JSON.parse(dataChunks);
-					resolve(dataToReturn);
-				});
-			});
-			dataToReturn = dataCollected;
-		} else {
-			let dataToReturnString = "";
-			for await (const message of streamCompletion(response.data)) {
-				try {
-					const parsed = JSON.parse(message);
-					let text = parsed.message.content.parts[0];
-					dataToReturn = parsed;
-					callback(text.replace(dataToReturnString, ""));
-					dataToReturnString = text;
-				} catch (error) {
-					throw new  Error("Could not JSON parse stream message", message, error)
-					//console.error("Could not JSON parse stream message", message, error);
-				}
-			}
-		}
-
-		dataToReturn = dataToReturn || response.data;
-
-		result.data.answer = dataToReturn.message?.content.parts[0] ?? "";
-		result.data.messageId = dataToReturn.message?.id ?? "";
-		result.data.conversationId = dataToReturn.conversation_id;
-
-		if (dataToReturn.detail) {
-			if (isObject(dataToReturn.detail)) {
-				if (dataToReturn.detail.message) {
-					result.status = false;
-					result.errorType = processError(dataToReturn.detail.message);
-					result.error = dataToReturn.detail.message;
-				}
-			} else {
-				result.status = false;
-				result.errorType = processError(dataToReturn.detail);
-				result.error = dataToReturn.detail;
-			}
-		} else if (dataToReturn.details) {
-			if (isObject(dataToReturn.details)) {
-				if (dataToReturn.details.message) {
-					result.status = false;
-					result.errorType = processError(dataToReturn.details.message);
-					result.error = dataToReturn.details.message;
-				}
-			} else {
-				result.status = false;
-				result.errorType = processError(dataToReturn.details);
-				result.error = dataToReturn.details;
-			}
-		} else {
-			if (result.data.answer === "") {
-				result.status = false;
-				result.errorType = ErrorType.UnknownError;
-				result.error = "Failed to get response. ensure your session token is valid and isn't expired.";
-			}
-		}
-	} catch (err: any) {
-		let dataToReturn = err.response?.data;
-		if (dataToReturn?.detail) {
-			if (isObject(dataToReturn?.detail)) {
-				if (dataToReturn?.detail?.message) {
-					result.status = false;
-					result.errorType = processError(dataToReturn?.detail?.message);
-					result.error = dataToReturn?.detail?.message;
-				}
-			} else {
-				result.status = false;
-				result.errorType = processError(dataToReturn?.detail);
-				result.error = dataToReturn?.detail;
-			}
-		} else if (dataToReturn?.details) {
-			if (isObject(dataToReturn?.details)) {
-				if (dataToReturn?.details?.message) {
-					result.status = false;
-					result.errorType = processError(dataToReturn?.details?.message);
-					result.error = dataToReturn?.details?.message;
-				}
-			} else {
-				result.status = false;
-				result.errorType = processError(dataToReturn?.details);
-				result.error = dataToReturn?.details;
-			}
-		} else {
-			if (result.data.answer === "") {
-				result.status = false;
-				result.errorType = ErrorType.UnknownError;
-				result.error = "Failed to get response. ensure your session token is valid and isn't expired.";
-			} else {
-				result.status = false;
-				result.errorType = ErrorType.UnknownError;
-				result.error = err.toString();
-			}
-		}
-	}
-
-	return result;
-}
-
-function validateToken(token: string): boolean {
-	if (!token) return false;
-	const parsed = JSON.parse(Buffer.from(token.split(".")[1], "base64").toString());
-	return Date.now() <= parsed.exp * 1000;
-}
-
-async function getTokens(bypassNode: string, sessionToken: string): Promise<Result<SessionResponse>> {
-	if (!sessionToken) {
-		throw new Error("No session token provided");
-	}
-
-	let result: Result<SessionResponse> = {
-		data: {
-			auth: "",
-			expires: "",
-			sessionToken: "",
-		},
-		error: null,
-		errorType: ErrorType.AccountRateLimitExceeded,
-		status: false,
-	};
-
-	try {
-		const response = await axios.request({
-			method: "GET",
-			url: `${bypassNode}/api/auth/session`,
-			headers: {
-				"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/109.0",
-				Cookie: `__Secure-next-auth.session-token=${sessionToken}`,
-			},
-		});
-		const cookies = response.headers["set-cookie"];
-		const sessionCookie = cookies.find((cookie) => cookie.startsWith("__Secure-next-auth.session-token"));
-		result.data.auth = response.data.accessToken;
-		result.data.expires = response.data.expires;
-		result.data.sessionToken = sessionCookie.split("=")[1];
-	} catch (err: any) {
-		throw new Error(`Could not find or parse actual response text due to: ${err}`);
-	}
-
-	return result;
-}
-
-export { sendMessage, validateToken, getTokens };
+    if (response.headers["content-type"] === "application/json") {
+        let dataChunks = "";
+        response.data.on("data", (chunk) => {
+          dataChunks += chunk.toString();
+        });
+        response.data.on("end", () => {
+          let responseData = JSON.parse(dataChunks);
+  
+          if (responseData.status === "ok") {
+            result.data.answer = responseData.answers[0].message;
+            result.data.conversationId = responseData.conversation_id;
+            result.data.messageId = responseData.answers[0].id;
+          } else {
+            result.errorType = ErrorType.ServerError;
+            result.error = responseData.error_message;
+            result.status = false;
+            return new Result(result);
+          }
+        });
+      } else {
+        dataToReturn = await streamCompletion(response.data);
+  
+        for (let i = 0; i < dataToReturn.length; i++) {
+          const message = dataToReturn[i];
+          let responseObj;
+          try {
+            responseObj = JSON.parse(message);
+          } catch (e) {
+            continue;
+          }
+  
+          if (!isObject(responseObj)) {
+            continue;
+          }
+  
+          if (responseObj.type === "message" && responseObj.message.role === "bot") {
+            let askResponse = new AskResponse();
+            askResponse.id = responseObj.message.id;
+            askResponse.message = responseObj.message.content.body;
+            callback(askResponse);
+          } else if (responseObj.type === "message" && responseObj.message.role === "user") {
+            continue;
+          } else if (responseObj.type === "error") {
+            processError(responseObj, result);
+            break;
+          }
+        }
+      }
+  
+      return new Result(result);
+    } catch (error) {
+      processError(error, result);
+      return new Result(result);
+    }
+  }
+  
+  /**
+   * 驗證 JWT token 的有效性。
+   * @param token 要驗證的 JWT token 字串。
+   * @returns 如果 token 有效，則傳回 true；否則傳回 false。
+   */
+  function validateToken(token) {
+    try {
+      const [, payload] = token.split(".");
+      const { exp } = JSON.parse(Buffer.from(payload, "base64").toString("utf-8"));
+      if (exp < Date.now() / 1000) return false;
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+  
+  /**
+   * 獲取存取金鑰和對話金鑰。
+   * @param bypassNode 對話機器人的 URL 位址。
+   * @param sessionToken 對話金鑰。
+   * @returns 包含 auth、expires 和 sessionToken 屬性的 `Result` 物件。
+   */
+  async function getTokens(bypassNode, sessionToken) {
+    let urlParams = new URLSearchParams({
+      session_token: sessionToken,
+    });
+  
+    let response = await axios.post(`${bypassNode}/backend-api/tokens?${urlParams.toString()}`, null, {
+      headers: {
+        "content-type": "application/json",
+      },
+    });
+  
+    if (response.status === 200 && response.data && response.data.auth && response.headers.expires) {
+      let sessionResponse = new SessionResponse();
+  
+      sessionResponse.auth = response.data.auth.access_token;
+      sessionResponse.expires = new Date(response.headers.expires).getTime();
+      sessionResponse.sessionToken = response.data.session_token;
+  
+      return new Result(sessionResponse);
+    } else {
+      throw new Error("Error fetching tokens.");
+    }
+  }
+  
+  export { sendMessage, validateToken, getTokens };
