@@ -9,7 +9,7 @@ interface AskResponse {
      */
     answer: string;
     /**
-     * 消息 ID。
+     * 息 ID。
      * @type {string}
      */
     messageId: string;
